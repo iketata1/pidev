@@ -29,7 +29,7 @@ class ReclamationController extends AbstractController
         $this->logger = $logger;
     }
 
-
+//search+pagination+index
     #[Route('/', name: 'app_reclamation_index', methods: ['GET'])]
     public function index(ReclamationRepository $reclamationRepository , Request $request , PaginatorInterface $paginator): Response
     {
@@ -43,7 +43,7 @@ class ReclamationController extends AbstractController
         $reclamation = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1), // Current page number
-            3 // Number of items per page
+             // Number of items per page
         );
         if ($request->isXmlHttpRequest()) {
                 $paginationHtml = $this->renderView('reclamation/_paginator.html.twig', ['reclamations' => $reclamation]);
@@ -122,7 +122,7 @@ public function new(Request $request, EntityManagerInterface $entityManager): Re
         // Add success flash message
         $this->addFlash('success', 'Your reclamation has been successfully submitted.');
 
-        return $this->redirectToRoute('app_reclamation_index', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('app_reclamation_new', [], Response::HTTP_SEE_OTHER);
     }
 
     return $this->render('reclamation/new.html.twig', [

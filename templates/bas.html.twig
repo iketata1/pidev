@@ -1,118 +1,394 @@
 <!DOCTYPE html>
 <html>
-    <head>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
 
-    <meta charset="utf-8">
-   <title>{% block title %}Welcome!{% endblock %}</title>
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <meta content="" name="keywords">
-    <meta content="" name="description">
+    {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
 
-    <!-- Favicon -->
-    <link href={{asset('Front/img/favicon.ico')}} rel="icon">
+    {% block stylesheets %}
+        <!-- Favicons -->
+        <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
+        <link href="{{ asset('assets/img/apple-touch-icon.png') }}" rel="apple-touch-icon">
 
-    <!-- Google Web Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
+        <!-- Google Fonts -->
+        <link href="https://fonts.gstatic.com" rel="preconnect">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 
-    <!-- Icon Font Stylesheet -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+        <!-- Vendor CSS Files -->
+        <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/quill/quill.snow.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/quill/quill.bubble.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/simple-datatables/style.css') }}" rel="stylesheet">
+        <!-- Template Main CSS File -->
+        <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+    {% endblock %}
 
-    <!-- Libraries Stylesheet -->
-    <link href={{asset('Front/lib/animate/animate.min.css')}} rel="stylesheet">
-    <link href={{asset('Front/lib/owlcarousel/assets/owl.carousel.min.css')}} rel="stylesheet">
-    <link href={{asset('Front/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css')}} rel="stylesheet" />
+    {% block javascripts %}
+        <!-- Vendor JS Files -->
+        <script src="{{ asset('assets/vendor/apexcharts/apexcharts.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/chart.js/chart.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/echarts/echarts.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/quill/quill.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/simple-datatables/simple-datatables.js') }}"></script>
+        <script src="{{ asset('assets/vendor/tinymce/tinymce.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/php-email-form/validate.js') }}"></script>
 
-    <!-- Customized Bootstrap Stylesheet -->
-    <link href={{asset('Front/css/bootstrap.min.css')}} rel="stylesheet">
+        <!-- Template Main JS File -->
+        <script src="{{ asset('assets/js/main.js') }}"></script>
+    {% endblock %}
+</head>
+<body>
 
-    <!-- Template Stylesheet -->
-    <link href={{asset('Front/css/style.css')}} rel="stylesheet">
 
-    </head>
-    <body>
-       
+{% block header %}
+    <header id="header" class="header fixed-top d-flex align-items-center">
 
- <!-- Topbar Start -->
-    <div class="container-fluid bg-dark px-5 d-none d-lg-block">
-       
-            <div class="col-lg-4 text-center text-lg-end">
-                
-            </div>
+        <div class="d-flex align-items-center justify-content-between">
+            <a href="" class="logo d-flex align-items-center">
+                <img src="{{ asset('assets/img/logo.png') }}" alt="">
+                <span class="d-none d-lg-block">FinancialHub</span>
+            </a>
+
+        </div><!-- End Logo -->
+
+        <!-- End Search Bar -->
+
+        <nav class="header-nav ms-auto">
+            <ul class="d-flex align-items-center">
+
+               <!-- End Search Icon-->
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge bg-primary badge-number">4</span>
+                    </a><!-- End Notification Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
+                        <li class="dropdown-header">
+                            You have 4 new notifications
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-x-circle text-danger"></i>
+                            <div>
+                                <h4>transaction ressite</h4>
+                                <p>virement</p>
+                                <p>30 min. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-x-circle text-danger"></i>
+                            <div>
+                                <h4>transaction ressite</h4>
+                                <p>transfer</p>
+                                <p>1 hr. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-x-circle text-danger"></i>
+                            <div>
+                                <h4>alert</h4>
+                                <p>votre demande de pret et ressit</p>
+                                <p>2 hrs. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="notification-item">
+                            <i class="bi bi-x-circle text-danger"></i>
+                            <div>
+                                <h4>alert</h4>
+                                <p>votre demande de pret et fail</p>
+                                <p>4 hrs. ago</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li class="dropdown-footer">
+                            <a href="#">Show all notifications</a>
+                        </li>
+
+                    </ul><!-- End Notification Dropdown Items -->
+
+                </li><!-- End Notification Nav -->
+
+                <li class="nav-item dropdown">
+
+                    <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+                        <i class="bi bi-chat-left-text"></i>
+                        <span class="badge bg-success badge-number">3</span>
+                    </a><!-- End Messages Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
+                        <li class="dropdown-header">
+                            You have 3 new messages
+                            <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="{{ asset('assets/img/anwer.jpg') }}" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>anwer</h4>
+                                    <p>hello 3a41 pi</p>
+                                    <p>4 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="{{ asset('assets/img/anwer.jpg') }}" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>anwer</h4>
+                                    <p>pgggr</p>
+                                    <p>6 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="message-item">
+                            <a href="#">
+                                <img src="{{ asset('assets/img/anwer.jpg') }}" alt="" class="rounded-circle">
+                                <div>
+                                    <h4>anwer</h4>
+                                    <p>il y a un client have some problem with the site</p>
+                                    <p>8 hrs. ago</p>
+                                </div>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li class="dropdown-footer">
+                            <a href="#">Show all messages</a>
+                        </li>
+
+                    </ul><!-- End Messages Dropdown Items -->
+
+                </li><!-- End Messages Nav -->
+
+                <li class="nav-item dropdown pe-3">
+
+                    <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
+                        <img src="{{ asset('assets/img/anwer.jpg') }}" alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">client1</span>
+                    </a><!-- End Profile Iamge Icon -->
+
+                    <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
+                        <li class="dropdown-header">
+                            <h6>Mohamed anwer</h6>
+                            <span>developpeur java</span>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="">
+                                <i class="bi bi-person"></i>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="">
+                                <i class="bi bi-gear"></i>
+                                <span>Account Settings</span>
+                            </a>
+                        </li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center" href="#">
+                                <i class="bi bi-box-arrow-right"></i>
+                                <span>Sign Out</span>
+                            </a>
+                        </li>
+
+                    </ul><!-- End Profile Dropdown Items -->
+                </li><!-- End Profile Nav -->
+
+            </ul>
+        </nav><!-- End Icons Navigation -->
+
+    </header><!-- End Header -->
+{% endblock %}
+
+{% block sidebar %}
+
+    <aside id="sidebar" class="sidebar">
+
+        <ul class="sidebar-nav" id="sidebar-nav">
+
+            <li class="nav-item">
+                <a class="nav-link " href="">
+                    <i class="bi bi-grid"></i>
+                    <span>Client Dashboard </span>
+                </a>
+            </li><!-- End Dashboard Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-menu-button-wide"></i>
+                    <span>My Acount</span>
+
+                </a>
+
+            </li><!-- End Components Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-journal-text"></i>
+                    <span>Demande Pret</span>
+
+                </a>
+
+            </li><!-- End Forms Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#tables-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-layout-text-window-reverse"></i>
+                    <span>Transaction</span>
+
+                </a>
+
+            </li><!-- End Tables Nav -->
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-bar-chart"></i>
+                    <span>investissement</span>
+
+                </a>
+
+            </li><!-- End Charts Nav -->
+
+            
+                <li class="nav-item">
+                <a class="nav-link collapsed" href="{{ path('app_reclamation_new') }}">
+                    <i class="bi bi-question-circle"></i>
+                    <span>reclamation</span>
+
+                </a>
+
+            </li>
+
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" data-bs-target="#charts-nav" data-bs-toggle="collapse" href="#">
+                    <i class="bi bi-card-list"></i>
+                    <span>My Carte</span>
+
+                </a>
+
+            </li>
+
+
+
+            <li class="nav-heading">autre</li>
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="">
+                    <i class="bi bi-person"></i>
+                    <span>Profile</span>
+                </a>
+            </li><!-- End Profile Page Nav -->
+
+           
+
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="">
+                    <i class="bi bi-envelope"></i>
+                    <span>Contact</span>
+                </a>
+            </li><!-- End Contact Page Nav -->
+
+            <!-- End Register Page Nav -->
+
+            <!-- End Login Page Nav -->
+
+            <!-- End Error 404 Page Nav -->
+
+            <!-- End Blank Page Nav -->
+
+        </ul>
+
+    </aside><!-- End Sidebar-->
+{% endblock %}
+
+
+
+{% block body %}
+
+{% endblock %}
+{% block footer %}
+    <footer id="footer" class="footer">
+        <div class="copyright">
+            &copy; Copyright <strong><span>FinancialHub</span></strong>. All Rights Reserved
         </div>
-    </div>
-    <!-- Topbar End -->
-
-
-
-        <!-- Navbar & Hero Start -->
-  
-        </nav>
-
-        
-    </div> 
-    <!-- Navbar & Hero End -->
-
-
-    
-
- {% block body %}{% endblock %}
-
-
-
-
-          <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src={{asset('Front/lib/wow/wow.min.js')}}></script>
-    <script src={{asset('Front/lib/easing/easing.min.js')}}></script>
-    <script src={{asset('Front/lib/waypoints/waypoints.min.js')}}></script>
-    <script src={{asset('Front/lib/owlcarousel/owl.carousel.min.js')}}></script>
-    <script src={{asset('Front/lib/tempusdominus/js/moment.min.js')}}></script>
-    <script src={{asset('Front/lib/tempusdominus/js/moment-timezone.min.js')}}></script>
-    <script src={{asset('Front/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js')}}></script>
-
-    <!-- Template Javascript -->
-    <script src={{asset('Front/js/main.js')}}></script>
-
-
-    <!-- Footer Start -->
-    <div class="container-fluid bg-dark text-light footer pt-5 mt-5 wow fadeIn" data-wow-delay="0.1s">
-        <div class="container py-5">
-            <div class="row g-5">
-                
-               
-                <div class="col-lg-3 col-md-6">
-                    <div class="row g-2 pt-2">
-                    
-
-                    </div>
-                </div>
-
-            </div>
+        <div class="credits">
+            <!-- All the links in the footer should remain intact. -->
+            <!-- You can delete the links only if you purchased the pro version. -->
+            <!-- Licensing information: https://bootstrapmade.com/license/ -->
+            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
+            Designed by <a href="https://bootstrapmade.com/">codeTitans</a>
         </div>
-        <div class="container">
-            <div class="copyright">
-                <div class="row">
-                    <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                       
-
-                        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                        
-                    </div>
-                   
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer End -->
+    </footer><!-- End Footer -->
+{% endblock %}
 
 
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
 
 
-    </body>
+</body>
+
 </html>
+
