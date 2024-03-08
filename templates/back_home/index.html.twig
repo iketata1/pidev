@@ -1,0 +1,37 @@
+{% extends 'back_home/basee.html.twig' %}
+
+{% block title %}Reclamation index{% endblock %}
+
+{% block body %}
+
+
+  <main id="main" class="main">
+
+    <div class="pagetitle">
+      <h1>Dashboard</h1>
+      <nav>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item active">Dashboard</li>
+        </ol>
+      </nav>
+    </div><!-- End Page Title -->
+
+  </main><!-- End #main -->
+
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ asset('back/vendor/apexcharts/apexcharts.min.js')}}"></script>
+  <script src="{{ asset('back/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+  <script src="{{ asset('back/vendor/chart.js/chart.umd.js')}}"></script>
+  <script src="{{ asset('back/vendor/echarts/echarts.min.js')}}"></script>
+  <script src="{{ asset('back/vendor/quill/quill.min.js')}}"></script>
+  <script src="{{ asset('back/vendor/simple-datatables/simple-datatables.js')}}"></script>
+  <script src="{{ asset('back/vendor/tinymce/tinymce.min.js')}}"></script>
+  <script src="{{ asset('back/vendor/php-email-form/validate.js')}}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{ asset('back/js/main.js')}}"></script>
+
+{% endblock %}

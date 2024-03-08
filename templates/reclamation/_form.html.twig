@@ -1,0 +1,38 @@
+<div class="container">
+
+    {{ form_widget(form.iduser, { 'attr': {'style': 'display: none;'} }) }} {# Hidden input for the iduser #}
+
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate', 'action': path('app_reclamation_new')}}) }}
+    <div class="form-group">
+        {{ form_label(form.description, "Description de la réclamation", {'label_attr': {'style': 'color: rgba(19, 20, 36, 0.7);'}}) }}
+        {{ form_widget(form.description, { 'attr': {'class': 'form-control mb-1', 'placeholder': 'your claim', 'style': 'color: gray;'} }) }}
+        {% if form_errors(form.description) is not empty %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.description) }}
+            </div>
+        {% endif %}
+    </div>
+    {{ form_widget(form.date, { 'attr': {'style': 'display: none;'} }) }} {# Hidden input for the date #}
+
+    <div class="form-group">
+        {{ form_label(form.type, "Type de la réclamation") }}
+        {{ form_widget(form.type, { 'attr': {'class': 'form-control mb-3', 'placeholder': 'Select the type', 'style': 'color: gray;'} }) }}
+        {% if form_errors(form.type) is not empty %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.type) }}
+            </div>
+        {% endif %}
+    </div>
+
+    {{ form_widget(form.etat, { 'attr': {'style': 'display: none;'} }) }} {# Hidden input for the etat #}
+
+     
+
+     
+   
+
+    {{ form_end(form) }}
+</div>
+
+
+ 

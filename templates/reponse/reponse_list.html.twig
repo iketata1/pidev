@@ -1,0 +1,33 @@
+<table id="reponse" class="table table-striped table-hover">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Reclamation Id</th>
+                <th>Iduser</th>
+                <th>Description</th>
+                <th>Show</th>
+                <th>Edit</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+        {% for reponse in reponses %}
+            <tr>
+                <td>{{ reponse.id }}</td>
+                <td>{{ reponse.idrec.id }}</td> {# Access the id property of the Reclamation entity #}
+                <td>{{ reponse.iduser }}</td>
+                <td>{{ reponse.description }}</td>
+                <td>
+                    <a href="{{ path('app_reponse_show', {'id': reponse.id}) }}">show</a>
+                </td>
+                <td>
+                    <a href="{{ path('app_reponse_edit', {'id': reponse.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>

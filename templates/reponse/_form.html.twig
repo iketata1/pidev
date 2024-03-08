@@ -1,0 +1,45 @@
+<div class="container">
+    {{ form_start(form, {'attr': {'novalidate': 'novalidate'}}) }}
+
+
+    <div class="form-group">
+        {{ form_label(form.iduser, "ID de l'utilisateur") }}
+        {{ form_widget(form.iduser, {'attr': {'class': 'form-control mb-3', 'placeholder': 'ID user', 'style': 'color: gray;' }}) }}
+        {% if form_errors(form.iduser) is not empty %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.iduser) }}
+            </div>
+        {% endif %}
+    </div>
+
+
+    <div class="form-group">
+        {{ form_label(form.description, "Description de la réponse", {'label_attr': {'style': 'color: rgba(19, 20, 36, 0.7);' }}) }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control mb-1', 'placeholder': 'Your claim', 'style': 'color: gray;' }}) }}
+        {% if form_errors(form.description) is not empty %}
+            <div class="alert alert-danger">
+                {{ form_errors(form.description) }}
+            </div>
+        {% endif %}
+    </div>
+
+   <div class="form-group">
+    {{ form_label(form.idrec, "ID de la réclamation") }}
+    {{ form_widget(form.idrec, { 
+        'attr': {'class': 'form-control mb-3', 'style': 'color: gray;'}, 'choice_value': 'id' }) }}
+    {% if form_errors(form.idrec) is not empty %}
+        <div class="alert alert-danger">
+            {{ form_errors(form.idrec) }}
+        </div>
+    {% endif %}
+</div>
+
+
+    
+
+    <div class="col-12">
+        <button class="btn btn-primary w-100 py-3" type="submit">{{ button_label|default('Save') }}</button>
+    </div>
+
+    {{ form_end(form) }}
+</div>

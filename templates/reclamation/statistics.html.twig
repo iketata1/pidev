@@ -1,0 +1,54 @@
+{% extends 'back_home/basee.html.twig' %}
+
+{% block title %}Reclamation Statistics{% endblock %}
+
+{% block body %}
+    <h1>Reclamation Statistics</h1>
+    <div style="width: 100%; height: 100%;">
+        <canvas id="claimChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const claimData = {{ claimStatistics|json_encode|raw }};
+            const labels = Object.keys(claimData);
+            const data = Object.values(claimData);
+
+            const colors = ['rgba(255, 99, 132, 0.5)', 'rgba(54, 162, 235, 0.5)', 'rgba(255, 206, 86, 0.5)', 'rgba(128, 0, 128, 0.5)']; // Add more colors if needed
+
+            const datasets = [{
+                label: '% of Claims',
+                data: data,
+                backgroundColor: colors,
+                borderColor: colors.map(color => color.replace('0.5', '1')), // Set border colors
+                borderWidth: 1
+            }];
+
+            const ctx = document.getElementById('claimChart').getContext('2d');
+            const myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: datasets
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    responsive: true,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: {
+                                callback: function(value) {
+                                    return value + '%';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    
+    <a href="{{ path('app_reclamation_index') }}">back to list</a>
+{% endblock %}

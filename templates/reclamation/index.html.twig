@@ -1,0 +1,86 @@
+{% extends 'back_home/basee.html.twig' %}
+
+{% block title %}Reclamation index{% endblock %}
+
+{% block body %}
+    <h1>Reclamation index</h1>
+<div id="rec_list">
+    <table id="reclamation" class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Iduser</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Etat</th>
+                <th>Show</th>
+                <th>Edit</th>
+                <th>Respond</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.iduser }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.date ? reclamation.date|date('Y-m-d') : '' }}</td>
+                <td>{{ reclamation.type }}</td>
+                <td>{{ reclamation.etat }}</td>
+                <td>
+                    <a href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">show</a>
+                </td>
+                <td> 
+                    <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">edit</a>
+                </td>
+                <td>
+                    {% if reclamation.etat != 'completed' %}
+                        <a href="{{ path('app_reponse_new', {'idrec': reclamation.id}) }}" class="btn btn-primary">Respond</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    <div id="pagination" class="d-flex justify-content-center mt-4">
+                {{ knp_pagination_render(reclamations, '@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig')}}
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        var delayTimer; // Variable to store the timer ID
+
+        function search() {
+            // Clear the previous timer
+            clearTimeout(delayTimer);
+            // Set a new timer to execute the search after a delay (e.g., 300 milliseconds)
+            delayTimer = setTimeout(function() {
+                var query = document.getElementById('search').value;
+                var url = '{{ path('app_reclamation_index') }}?q=' + query;
+                $.ajax({
+                    type: 'GET',
+                    url: url,
+                    success: function(response) {
+                        $('#rec_list').html(response.content); // Update search results HTML
+                        $('#pagination').html(response.pagination); // Update pagination HTML
+                    },
+                    error: function(xhr, status, error) {
+                        console.error(xhr.responseText);
+                    }
+                });
+            }, 300); // Set the delay time here (300 milliseconds in this example)
+        }
+        document.getElementById('search').addEventListener('input', search);
+    </script>
+
+    <!-- Courses End -->
+        <a href="{{ path('reclamation_statistics') }}" class="btn btn-primary">Reclamation statistics</a>
+
+{% endblock %}
+
+

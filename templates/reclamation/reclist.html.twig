@@ -1,0 +1,42 @@
+<table id="reclamation" class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Iduser</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Type</th>
+                <th>Etat</th>
+                <th>Show</th>
+                <th>Edit</th>
+                <th>Respond</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td>{{ reclamation.id }}</td>
+                <td>{{ reclamation.iduser }}</td>
+                <td>{{ reclamation.description }}</td>
+                <td>{{ reclamation.date ? reclamation.date|date('Y-m-d') : '' }}</td>
+                <td>{{ reclamation.type }}</td>
+                <td>{{ reclamation.etat }}</td>
+                <td>
+                    <a href="{{ path('app_reclamation_show', {'id': reclamation.id}) }}">show</a>
+                </td>
+                <td> 
+                    <a href="{{ path('app_reclamation_edit', {'id': reclamation.id}) }}">edit</a>
+                </td>
+                <td>
+                    {% if reclamation.etat != 'completed' %}
+                        <a href="{{ path('app_reponse_new', {'idrec': reclamation.id}) }}" class="btn btn-primary">Respond</a>
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="7">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>

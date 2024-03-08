@@ -1,0 +1,43 @@
+{% extends 'bas.html.twig' %}
+
+{% block title %}New Reclamation{% endblock %}
+
+{% block body %}
+
+
+
+
+ <!-- Contact Start -->
+
+ <div class="container-xxl py-5 ">
+    <div class="container d-flex justify-content-center align-items-center">
+        <div class="col-lg-4 col-md-12 wow fadeInUp" data-wow-delay="0.5s">
+            <form action="{{ path('app_reclamation_new') }}" method="POST">
+                <div class="row g-3">
+                    <h6 class="section-title bg-white text-center text-primary px-3">Reclamation</h6>
+                    <h1 class="mb-5 text-center">Create new Reclamation</h1>
+
+                    {{ include('reclamation/_form.html.twig') }}
+
+                        <div class="col-12">
+                        <button href="{{ path('app_front_home') }}" class="btn btn-primary w-100 py-3" type="submit">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+   
+    <!-- Contact End -->
+
+
+
+    
+
+
+
+
+    
+{% endblock %}
